@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\background.jpg" />
+    <None Remove="images\joindiscordbutton.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="LauncherScripts\" />
+    <Folder Include="MVVM\ViewModel\" />
+    <Folder Include="MVVM\Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\background.jpg" />
+    <Resource Include="images\joindiscordbutton.png" />
+  </ItemGroup>
+
+</Project>
