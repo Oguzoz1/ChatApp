@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-F:\GitHub\ChatApp\Launcher\obj\Debug\net5.0-windows\
+F:\GitHub\ChatApp\Launcher\obj\Release\net5.0-windows\
 Launcher
 none
 false
-TRACE;DEBUG;NET;NET5_0;NETCOREAPP
+TRACE;RELEASE;NET;NET5_0;NETCOREAPP
 F:\GitHub\ChatApp\Launcher\App.xaml
 11121423476
 
