@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sKpOWdAXrKGHw8v0iiLcfwb2oC8mQr9a6qT4XOhb1OzJgcUaZlQBvwUeH9OBFzKSOXfoP13539dF0HYrzFunOA==",
+  "dgSpecHash": "vYXrrfWmccDl8fi/YwPzt8Zl/Ng6YMp1hfvxTsPm69xkzPZZpDH+wvyJwhuMnhhSgQWifimeYgZvZn5hykt8Aw==",
   "success": true,
-  "projectFilePath": "F:\\GitHub\\Vertigo Spin\\ChatApp\\Launcher\\Launcher.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "F:\\GitHub\\ChatApp\\Launcher\\LauncherClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\oguz\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

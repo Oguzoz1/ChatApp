@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System;
 
-namespace Launcher.LauncherData
+namespace LauncherClient.LauncherData
 {
 
     public class GamePaths

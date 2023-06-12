@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\GitHub\\Vertigo Spin\\ChatApp\\Launcher\\Launcher.csproj": {}
+    "F:\\GitHub\\ChatApp\\Launcher\\Launcher.csproj": {}
   },
   "projects": {
-    "F:\\GitHub\\Vertigo Spin\\ChatApp\\Launcher\\Launcher.csproj": {
+    "F:\\GitHub\\ChatApp\\Launcher\\Launcher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GitHub\\Vertigo Spin\\ChatApp\\Launcher\\Launcher.csproj",
+        "projectUniqueName": "F:\\GitHub\\ChatApp\\Launcher\\Launcher.csproj",
         "projectName": "Launcher",
-        "projectPath": "F:\\GitHub\\Vertigo Spin\\ChatApp\\Launcher\\Launcher.csproj",
+        "projectPath": "F:\\GitHub\\ChatApp\\Launcher\\Launcher.csproj",
         "packagesPath": "C:\\Users\\oguz\\.nuget\\packages\\",
-        "outputPath": "F:\\GitHub\\Vertigo Spin\\ChatApp\\Launcher\\obj\\",
+        "outputPath": "F:\\GitHub\\ChatApp\\Launcher\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
