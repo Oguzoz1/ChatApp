@@ -1,10 +1,6 @@
 ﻿using Server.Net.IO;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server
 {
@@ -20,7 +16,9 @@ namespace Server
             UID = Guid.NewGuid();
             _packetReader = new PacketReader(ClientSocket.GetStream());
 
+            if (_packetReader == null) return;
             byte opcode = _packetReader.ReadByte();
+
             if (opcode != 0)
             {
                 ClientSocket.Close();
@@ -30,6 +28,32 @@ namespace Server
 
             Username = _packetReader.ReadMessage();
             Console.WriteLine($"[{DateTime.Now}]: Client has connected with the username: {Username}");
+        }
+
+        void Process()
+        {
+            while (true)
+            {
+                try
+                {
+                    byte opcode = _packetReader.ReadByte();
+                    switch (opcode)
+                    {
+                        case 5:
+                            string msg = _packetReader.ReadMessage();
+                            Console.WriteLine($"[{DateTime.Now}]: Message received! {msg}");
+                            Program.BroadcastMessage(msg);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("");
+                    throw;
+                }
+            }
         }
     }
 }

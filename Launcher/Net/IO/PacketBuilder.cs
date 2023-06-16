@@ -18,7 +18,7 @@ namespace LauncherClient.Net.IO
             //We don't have to reserve 4 bytes in the buffer.
             _ms.WriteByte(opcode);
         }
-        public void WriteString(string msg)
+        public void WriteMessage(string msg)
         {
             //opcode length how many bytes needed to read for package. *Payload*
             int msgLength = msg.Length;

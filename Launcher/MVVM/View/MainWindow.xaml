@@ -39,7 +39,15 @@
                 <Button DockPanel.Dock="Top" Content="Connect" Height="25"
                         Command="{Binding ConnectToServerCommand}"
                         />
-                <ListView Opacity="0.40" Background="#191970"/>
+                <ListView Opacity="0.80" Background="#191970"
+                          ItemsSource="{Binding Users}"
+                          >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Username}" Foreground="White"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate> 
+                </ListView>
             </DockPanel>
 
             <StackPanel Grid.Column="1">
@@ -48,8 +56,11 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Height="30"
                                Width="700"
-                               VerticalAlignment="Bottom"/>
-                    <Button Width="60" Content="SEND"/>
+                               VerticalAlignment="Bottom"
+                               Text="{Binding Message, UpdateSourceTrigger =PropertyChanged}"/>
+                    <Button Width="60" Content="SEND"
+                            Command="{Binding SendMessageCommand}"
+                            />
                 </StackPanel>
             </StackPanel>
 
