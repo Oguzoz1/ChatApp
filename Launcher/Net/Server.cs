@@ -11,6 +11,8 @@ namespace LauncherClient.Net
         private TcpClient _client;
 
         public event Action connectedEvent;
+        public event Action msgReceivedEvent;
+        public event Action disconnectedEvent;
         
 
         public Server()
@@ -24,7 +26,7 @@ namespace LauncherClient.Net
             if (!_client.Connected)
             {
                 //Connect to local
-                _client.Connect("127.0.0.1", 8000);
+                _client.Connect("192.168.1.79", 6062);
                 //Packet reader reads the current Network stream of the client
                 PacketReader = new PacketReader(_client.GetStream());
                 PacketBuilder connectPacket = new PacketBuilder();
@@ -52,6 +54,14 @@ namespace LauncherClient.Net
                         //Invoke connection event.
                         case 1:
                             connectedEvent?.Invoke();
+                            break;
+                        //Invoke receive event.
+                        case 5:
+                            msgReceivedEvent?.Invoke();
+                            break;
+                        //Invoke disconnection event.
+                        case 10:
+                            disconnectedEvent?.Invoke();
                             break;
                     }
 

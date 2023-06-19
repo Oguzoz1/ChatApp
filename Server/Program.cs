@@ -1,6 +1,7 @@
 ﻿using Server.Net.IO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 
@@ -44,6 +45,24 @@ namespace Server
                 }
             }
         }
+
+        public static void BroadcastDisconnect(string uid)
+        {
+            var disconnectedUser = _users.Where(x => x.UID.ToString() == uid).FirstOrDefault();
+            _users.Remove(disconnectedUser);
+
+            foreach (Client usr in _users)
+            {
+                //Send message to all available users (connected users) 
+                PacketBuilder broadcastPacket = new PacketBuilder();
+
+                broadcastPacket.WriteOpCode(10);
+                broadcastPacket.WriteMessage(uid);
+                usr.ClientSocket.Client.Send(broadcastPacket.GetPacketBytes());
+            }
+            BroadcastMessage($"[{disconnectedUser.Username}] Disconnected!");
+        }
+
 
         public static void BroadcastMessage(string message)
         {

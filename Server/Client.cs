@@ -1,6 +1,7 @@
 ﻿using Server.Net.IO;
 using System;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace Server
 {
@@ -28,6 +29,8 @@ namespace Server
 
             Username = _packetReader.ReadMessage();
             Console.WriteLine($"[{DateTime.Now}]: Client has connected with the username: {Username}");
+
+            Task.Run(() => Process());
         }
 
         void Process()
@@ -42,7 +45,7 @@ namespace Server
                         case 5:
                             string msg = _packetReader.ReadMessage();
                             Console.WriteLine($"[{DateTime.Now}]: Message received! {msg}");
-                            Program.BroadcastMessage(msg);
+                            Program.BroadcastMessage($"[{DateTime.Now}]: [{Username}] : {msg}");
                             break;
                         default:
                             break;
@@ -50,8 +53,10 @@ namespace Server
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("");
-                    throw;
+                    Console.WriteLine($"[{UID.ToString()}]: Disconnected!");
+                    Program.BroadcastDisconnect(UID.ToString());
+                    ClientSocket.Close();
+                    break;
                 }
             }
         }
