@@ -14,7 +14,7 @@ namespace Server
         static void Main(string[] args)
         {
             _users = new List<Client>();
-            _listener = new TcpListener(IPAddress.Parse("127.0.0.1"),8000);
+            _listener = new TcpListener(IPAddress.Parse("192.168.1.79"),6062);
             _listener.Start();
 
             while (true)

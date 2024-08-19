@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LauncherClient.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,5 +42,17 @@ namespace LauncherClient
 
         }
         #endregion
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var viewModel = DataContext as MainViewModel;
+                if (viewModel?.SendMessageCommand?.CanExecute(null) == true)
+                {
+                    viewModel.SendMessageCommand.Execute(null);
+                }
+            }
+        }
     }
 }

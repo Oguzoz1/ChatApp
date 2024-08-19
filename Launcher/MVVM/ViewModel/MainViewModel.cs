@@ -44,7 +44,6 @@ namespace LauncherClient.MVVM.ViewModel
         {
             var msg = _server.PacketReader.ReadMessage();
             Application.Current.Dispatcher.Invoke(() => Messages.Add(msg));
-
         }
 
         private void UserConnected()

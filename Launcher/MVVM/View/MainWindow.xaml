@@ -51,19 +51,19 @@
             </DockPanel>
 
             <StackPanel Grid.Column="1">
-                <ListView Height="500" Background="#191970" Opacity="0.80"
+                <ListView Height="500" Background="#191970" Opacity="0.10"
                           ItemsSource="{Binding Messages}"
                           Foreground="White"
                           />
-                
+
                 <StackPanel Orientation="Horizontal">
                     <TextBox Height="30"
-                               Width="700"
-                               VerticalAlignment="Center"
-                               Text="{Binding Message, UpdateSourceTrigger =PropertyChanged}"/>
+                        Width="700"
+                        VerticalAlignment="Center"
+                        Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"
+                        KeyDown="TextBox_KeyDown"/>
                     <Button Width="60" Content="SEND"
-                            Command="{Binding SendMessageCommand}"
-                            />
+                        Command="{Binding SendMessageCommand}"/>
                 </StackPanel>
             </StackPanel>
 
