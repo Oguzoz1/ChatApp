@@ -4,84 +4,117 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:local="clr-namespace:Launcher" xmlns:viewmodel="clr-namespace:LauncherClient.MVVM.ViewModel"
+        xmlns:local="clr-namespace:Launcher"
+        xmlns:viewmodel="clr-namespace:LauncherClient.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1000"
         Background="Transparent"
-        WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None">
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None">
 
-    
     <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
+
     <Border CornerRadius="10" BorderBrush="#191970" BorderThickness="4" Padding="8" Background="Black" Opacity="0.99">
-        
         <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="/images/background.jpg" Stretch="UniformToFill"/>
-            </Grid.Background>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+            <!-- Upper Border for Cancel Button -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!-- For the top border with cancel button -->
+                <RowDefinition Height="*"/>
+                <!-- For the main content -->
+            </Grid.RowDefinitions>
 
-           
-            <DockPanel>
-                <!--<Button Margin="64,575,733,52" Initialized="OnClickDiscordInit" Click="OnClickDiscord"
-                        DockPanel.Dock="Bottom" Width="120">
-                    <Image Source="/images/joindiscordbutton.png" Stretch="Fill"/>
-                </Button>-->
-                <TextBox Height="30" 
-                           DockPanel.Dock="Top"
-                           Background="White"
-                           Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
-                           />
-                <Button DockPanel.Dock="Top" Content="Connect" Height="25"
-                        Command="{Binding ConnectToServerCommand}"
-                        />
-                <ListView Opacity="0.80" Background="#191970"
-                          ItemsSource="{Binding Users}"
-                          >
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Username}" Foreground="White"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate> 
-                </ListView>
-            </DockPanel>
-
-            <StackPanel Grid.Column="1">
-                <ListView Height="500" Background="#191970" Opacity="0.10"
-                          ItemsSource="{Binding Messages}"
-                          Foreground="White"
-                          />
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Height="30"
-                        Width="700"
-                        VerticalAlignment="Center"
-                        Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"
-                        KeyDown="TextBox_KeyDown"/>
-                    <Button Width="60" Content="SEND"
-                        Command="{Binding SendMessageCommand}"/>
-                </StackPanel>
-            </StackPanel>
-
-            <Button Margin="64,575,733,52" Initialized="OnClickDiscordInit" Click="OnClickDiscord">
-                <Image Source="/images/joindiscordbutton.png" Stretch="Fill"/>
-            </Button>
-            <Border 
-                CornerRadius="10" BorderBrush="#191970" BorderThickness="4" Padding="6" 
-                Background="Black" Opacity="0.75" Width="300" Margin="338,0,338,588">
-                <TextBlock Foreground="#8D8BE4" Background="Black" 
-                       TextAlignment="Center"
-                       Height="60"
-                       Width="250"
-                       FontSize="60"
-                       FontFamily="Lucida Sans"
-                       >
-                AERIA</TextBlock>
+            <!-- Upper Border with Cancel Button -->
+            <Border Grid.Row="0" Background="#191970" Height="40" VerticalAlignment="Top">
+                <Grid>
+                    <TextBlock Text="My Launcher" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
+                    <Button Content="X"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0,0,10,0"
+                            Background="Red"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Click="CloseButton_Click"/>
+                </Grid>
             </Border>
+
+            <!-- Main Content -->
+            <Grid Grid.Row="1">
+                <Grid.Background>
+                    <ImageBrush ImageSource="/images/background.jpg" Stretch="UniformToFill"/>
+                </Grid.Background>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Panel (Users List and Connection) -->
+                <DockPanel>
+                    <TextBox Height="30" 
+                             DockPanel.Dock="Top"
+                             Background="White"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button DockPanel.Dock="Top" Content="Connect" Height="25"
+                            Command="{Binding ConnectToServerCommand}"/>
+                    <ListView Opacity="0.80" Background="#191970"
+                              ItemsSource="{Binding Users}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Username}" Foreground="White"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </DockPanel>
+
+                <!-- Right Panel (Messages and Input) -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <!-- Takes up remaining space -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Auto-sized for the StackPanel -->
+                    </Grid.RowDefinitions>
+
+                    <ListView Background="#191970" Opacity="0.30"
+                              ItemsSource="{Binding Messages}"
+                              Foreground="White"
+                              Grid.Row="0"/>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <TextBox Height="30"
+                                 Width="700"
+                                 VerticalAlignment="Center"
+                                 Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}"
+                                 KeyDown="TextBox_KeyDown"/>
+                        <Button Width="60" Content="SEND"
+                                Command="{Binding SendMessageCommand}"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Discord Button -->
+                <Button Margin="64,575,733,52" Initialized="OnClickDiscordInit" Click="OnClickDiscord">
+                    <Image Source="/images/joindiscordbutton.png" Stretch="Fill"/>
+                </Button>
+
+                <!-- AERIA Text -->
+                <Border CornerRadius="10" BorderBrush="#191970" BorderThickness="4" Padding="6" 
+                        Background="Black" Opacity="0.75" Width="300" Margin="338,0,338,588">
+                    <TextBlock Foreground="#8D8BE4" Background="Black" 
+                               TextAlignment="Center"
+                               Height="60"
+                               Width="250"
+                               FontSize="60"
+                               FontFamily="Lucida Sans">
+                    AERIA</TextBlock>
+                </Border>
+            </Grid>
         </Grid>
     </Border>
 </Window>
