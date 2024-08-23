@@ -26,7 +26,7 @@ namespace LauncherClient.Net
             if (!_client.Connected)
             {
                 //Connect to local
-                _client.Connect("192.168.1.79", 6062);
+                _client.Connect("34.141.136.120", 6062);
                 //Packet reader reads the current Network stream of the client
                 PacketReader = new PacketReader(_client.GetStream());
                 PacketBuilder connectPacket = new PacketBuilder();
