@@ -41,8 +41,6 @@ namespace LauncherClient
         {
 
         }
-        #endregion
-
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -59,5 +57,12 @@ namespace LauncherClient
         {
             Application.Current.Shutdown();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+        #endregion
     }
+
 }

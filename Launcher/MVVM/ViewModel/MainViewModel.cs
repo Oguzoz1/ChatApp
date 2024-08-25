@@ -36,7 +36,7 @@ namespace LauncherClient.MVVM.ViewModel
 
 
             SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message),
-       o => !string.IsNullOrEmpty(Message));
+                o => !string.IsNullOrEmpty(Message));
         }
 
 

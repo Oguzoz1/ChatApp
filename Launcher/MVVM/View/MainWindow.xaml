@@ -85,7 +85,7 @@
                     <ListView Background="#191970" Opacity="0.30"
                               ItemsSource="{Binding Messages}"
                               Foreground="White"
-                              Grid.Row="0"/>
+                              Grid.Row="0" SelectionChanged="ListView_SelectionChanged"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
                         <TextBox Height="30"
