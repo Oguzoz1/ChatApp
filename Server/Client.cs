@@ -11,6 +11,7 @@ namespace Server
         public Guid UID{ get; set; }
         public TcpClient ClientSocket{ get; set; }
         private PacketReader _packetReader;
+
         public Client(TcpClient client)
         {
             ClientSocket = client;
@@ -44,8 +45,13 @@ namespace Server
                     {
                         case 5:
                             string msg = _packetReader.ReadMessage();
-                            Console.WriteLine($"[{DateTime.Now}]: Message received! {msg}");
+                            Console.WriteLine($"[{DateTime.Now}]:[{Username}] {msg}");
                             Program.BroadcastMessage($"[{DateTime.Now}]: [{Username}] : {msg}");
+                            break;
+                        case 15:
+                            string vrs = _packetReader.ReadMessage();
+                            Console.WriteLine($"[{DateTime.Now}]: Version requested by {Username}: {vrs}");
+                            Program.OnVersionRequest(this);
                             break;
                         default:
                             break;

@@ -11,11 +11,14 @@ namespace Server
     {
         private static TcpListener _listener;
         private static List<Client> _users;
+        private static string _currentVersion = "1.0.0"; 
+
         static void Main(string[] args)
         {
             _users = new List<Client>();
             _listener = new TcpListener(IPAddress.Parse("127.0.0.1"),6062);
             _listener.Start();
+
 
             while (true)
             {
@@ -25,6 +28,7 @@ namespace Server
                 /* Broadcast the connection to everyone on the server */
                 BroadcastConnection();
             }
+
         }
 
 
@@ -74,6 +78,17 @@ namespace Server
                 user.ClientSocket.Client.Send(msgPacket.GetPacketBytes()); 
             }
         }
-        
+        public static void OnVersionRequest(Client client)
+        {
+            SendVersionToClient(client, _currentVersion);
+        }
+
+        static void SendVersionToClient(Client client, string version)
+        {
+            PacketBuilder versionPacket = new PacketBuilder();
+            versionPacket.WriteOpCode(15); 
+            versionPacket.WriteMessage(version);
+            client.ClientSocket.Client.Send(versionPacket.GetPacketBytes());
+        }
     }
 }

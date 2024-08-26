@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ne1P1NMyg0qtwJ6QqQWSXl9/lnPqKkroWZuHr6IYdJfwUinhHrr/NbC792Tfiz8Jl9WIWL/FVEjuf3xLhtgyGQ==",
+  "dgSpecHash": "4f5N3eR/N4Xj8yVYegAWQtcIrtBOlhrJVAMMyYhKzC9pHRlTKt+AUwRYDc/7f+zB4MixjsoL5K8lWy4R7X6LkA==",
   "success": true,
   "projectFilePath": "F:\\GitHub\\ChatApp\\Server\\Server.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\oguz\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
