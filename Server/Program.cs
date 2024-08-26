@@ -19,7 +19,7 @@ namespace Server
             _listener = new TcpListener(IPAddress.Parse("127.0.0.1"),6062);
             _listener.Start();
 
-
+            Console.WriteLine("Server is started");
             while (true)
             {
                 Client client = new Client(_listener.AcceptTcpClient());

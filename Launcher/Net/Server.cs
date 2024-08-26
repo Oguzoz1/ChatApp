@@ -30,7 +30,7 @@ namespace LauncherClient.Net
             {
                 //Connect to local
                 //_client.Connect("34.141.136.120", 6062);
-                _client.Connect(AppConfig.ServerIP, 6062);
+                _client.Connect("34.141.136.120", 6062);
 
 
                 //Packet reader reads the current Network stream of the client
