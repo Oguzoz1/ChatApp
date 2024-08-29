@@ -37,10 +37,8 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -56,7 +54,8 @@ on real-time messaging, with features that prioritize user privacy and seamless 
 
 
 ### Built With
-
+.NET WPF
+Current Server: Linux -> Google Cloud Service Virtual Machine
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -68,22 +67,16 @@ on real-time messaging, with features that prioritize user privacy and seamless 
 
 ### Prerequisites
 
-
-* npm
-  ```sh
-  
-  ```
+Windows OS
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. 
-2. Clone the repo
+1. Clone the repo
    ```sh
    https://github.com/Oguzoz1/ChatApp
    ```
-3. Restore NuGet Packages
+2. Restore NuGet Packages
    ```sh
    dotnet restore
    ```
@@ -93,27 +86,15 @@ _Below is an example of how you can instruct your audience on installing and set
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [ ] Add Client Auto-Update System
+- [ ] Add User Authentication
+- [ ] Add Private Messaging Feature
+- [ ] Add Image Support for Chatting
+- [ ] Add User Profile Picture
+- [ ] Add Encryption to messages
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,7 +111,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 Oğuz Özüer
 
-Project Link:
+Project Link: https://github.com/Oguzoz1/ChatApp
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
