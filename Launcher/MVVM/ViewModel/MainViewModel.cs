@@ -1,14 +1,14 @@
 ﻿using LauncherClient.MVVM.Core;
 using LauncherClient.MVVM.Model;
 using LauncherClient.Net;
-using System;
 using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Diagnostics;
+using System.ComponentModel;
+
 namespace LauncherClient.MVVM.ViewModel
 {
-    class MainViewModel
+    class MainViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<UserModel> Users { get; set; } 
         public ObservableCollection<string> Messages { get; set; } 
@@ -16,8 +16,24 @@ namespace LauncherClient.MVVM.ViewModel
         public RelayCommand SendMessageCommand { get; set; }
 
         private Server _server;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string Username { get; set; }
-        public string Message { get; set; }
+        private string _message;
+
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    OnPropertyChanged(nameof(Message));
+                }
+            }
+        }
         public string Version { get; set; }
 
         public MainViewModel()
@@ -38,11 +54,18 @@ namespace LauncherClient.MVVM.ViewModel
                 o => !string.IsNullOrEmpty(Username));
 
 
-            SendMessageCommand = new RelayCommand(o => _server.SendMessageToServer(Message),
+            SendMessageCommand = new RelayCommand(o => {
+                _server.SendMessageToServer(Message);
+               Message = string.Empty;
+            },
                 o => !string.IsNullOrEmpty(Message));
 
         }
 
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private void MessageReceived()
         {
