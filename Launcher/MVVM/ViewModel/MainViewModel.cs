@@ -56,6 +56,7 @@ namespace LauncherClient.MVVM.ViewModel
                 Username = _server.PacketReader.ReadMessage(),
                 UID = _server.PacketReader.ReadMessage(),
             };
+
             //Make sure check this on the server to avoid duplications
             //Doing it from a different THREAD so use DISPATCHER
             if(!Users.Any(x => x.UID == user.UID))

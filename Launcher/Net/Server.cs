@@ -1,6 +1,5 @@
 ﻿using LauncherClient.Net.IO;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -19,37 +18,42 @@ namespace LauncherClient.Net
         public event Action disconnectedEvent;
         public event Action versionReceivedEvent;
 
+        private const int KeepAliveTime = 30000; // 30 seconds
+        private const int KeepAliveInterval = 10000; // 10 seconds
         public Server()
         {
             _client = new TcpClient();
-            //Avoid Time-put by keep-alive.
-            _client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+            ConfigureKeepAlive(_client.Client);
         }
 
         public void ConnectServer(string username)
         {
-            //Set your local
             if (!_client.Connected)
             {
-                _client.Connect(AppConfig.ServerIP, 6062);
-
-
-                //Packet reader reads the current Network stream of the client
-                PacketReader = new PacketReader(_client.GetStream());
-                PacketBuilder connectPacket = new PacketBuilder();
-
-                if (!string.IsNullOrEmpty(username))
+                try
                 {
-                connectPacket.WriteOpCode(0);
-                connectPacket.WriteMessage(username);
-                _client.Client.Send(connectPacket.GetPacketBytes());
+                    _client.Connect(AppConfig.ServerIP, 6062);
+                    PacketReader = new PacketReader(_client.GetStream());
+                    PacketBuilder connectPacket = new PacketBuilder();
+
+                    if (!string.IsNullOrEmpty(username))
+                    {
+                        connectPacket.WriteOpCode(0);
+                        connectPacket.WriteMessage(username);
+                        _client.Client.Send(connectPacket.GetPacketBytes());
+                    }
+                    ReadPackets();
                 }
-                ReadPackets();
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error connecting to server: {ex.Message}");
+
+                    // Reconnection Handle Here
+                }
             }
         }
         private void ReadPackets()
         {
-            // Offload to a different thread to avoid deadlock
             Task.Run(() =>
             {
                 try
@@ -76,14 +80,17 @@ namespace LauncherClient.Net
                 }
                 catch (IOException ex)
                 {
-                    // Handle the disconnection, log it or try to reconnect
-                    Debug.WriteLine($"Disconnected: {ex.Message}");
+                    Console.WriteLine($"Disconnected: {ex.Message}");
                     disconnectedEvent?.Invoke();
                 }
-                catch (Exception ex)
+                catch (SocketException ex)
                 {
-                    // Handle other exceptions
-                    Debug.WriteLine($"An error occurred: {ex.Message}");
+                    Console.WriteLine($"Socket error: {ex.Message}");
+                    disconnectedEvent?.Invoke();
+                }
+                finally
+                {
+                    _client?.Close();
                 }
             });
         }
@@ -96,6 +103,19 @@ namespace LauncherClient.Net
             _client.Client.Send(messagePacket.GetPacketBytes());
         }
 
+        private void ConfigureKeepAlive(Socket socket)
+        {
+            // Enable keep-alive
+            socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+
+            // Configure keep-alive parameters
+            byte[] keepAliveParams = new byte[12]; //Array stores keep-alive configuration
+            BitConverter.GetBytes(1).CopyTo(keepAliveParams, 0); // Enable keep-alive (non-zero)
+            BitConverter.GetBytes(KeepAliveTime).CopyTo(keepAliveParams, 4); // Initial keep-alive time
+            BitConverter.GetBytes(KeepAliveInterval).CopyTo(keepAliveParams, 8); // Keep-alive interval
+
+            socket.IOControl(IOControlCode.KeepAliveValues, keepAliveParams, null);
+        }
         internal void SendVersionToServer(string version)
         {
             PacketBuilder versionPacket = new PacketBuilder();
