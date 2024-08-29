@@ -46,7 +46,7 @@ namespace Server
                         case 5:
                             string msg = _packetReader.ReadMessage();
                             Console.WriteLine($"[{DateTime.Now}]:[{Username}] {msg}");
-                            Program.BroadcastMessage($"[{DateTime.Now}]: [{Username}] : {msg}");
+                            BroadcastManager.BroadcastMessage($"[{DateTime.Now}]: [{Username}] : {msg}");
                             break;
                         case 15:
                             string vrs = _packetReader.ReadMessage();
@@ -60,7 +60,7 @@ namespace Server
                 catch (Exception)
                 {
                     Console.WriteLine($"[{UID.ToString()}]: Disconnected!");
-                    Program.BroadcastDisconnect(UID.ToString());
+                    BroadcastManager.BroadcastDisconnect(UID.ToString());
                     ClientSocket.Close();
                     break;
                 }
