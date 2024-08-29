@@ -1,6 +1,7 @@
 ﻿using LauncherClient.Net.IO;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
@@ -21,6 +22,8 @@ namespace LauncherClient.Net
         public Server()
         {
             _client = new TcpClient();
+            //Avoid Time-put by keep-alive.
+            _client.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
         }
 
         public void ConnectServer(string username)
@@ -28,9 +31,7 @@ namespace LauncherClient.Net
             //Set your local
             if (!_client.Connected)
             {
-                //Connect to local
-                //_client.Connect("34.141.136.120", 6062);
-                _client.Connect("34.141.136.120", 6062);
+                _client.Connect(AppConfig.ServerIP, 6062);
 
 
                 //Packet reader reads the current Network stream of the client
@@ -48,31 +49,41 @@ namespace LauncherClient.Net
         }
         private void ReadPackets()
         {
-            //Offload to a different thread to not deadlock
-            //Clients reading data sent by server.
+            // Offload to a different thread to avoid deadlock
             Task.Run(() =>
             {
-                while (true)
+                try
                 {
-                    byte opcode = PacketReader.ReadByte();
-                    switch (opcode)
+                    while (true)
                     {
-                        //Invoke connection event.
-                        case 1:
-                            connectedEvent?.Invoke();
-                            break;
-                        //Invoke receive event.
-                        case 5:
-                            msgReceivedEvent?.Invoke();
-                            break;
-                        //Invoke disconnection event.
-                        case 10:
-                            disconnectedEvent?.Invoke();
-                            break;
-                        case 15:
-                            versionReceivedEvent?.Invoke();
-                            break;
+                        byte opcode = PacketReader.ReadByte();
+                        switch (opcode)
+                        {
+                            case 1:
+                                connectedEvent?.Invoke();
+                                break;
+                            case 5:
+                                msgReceivedEvent?.Invoke();
+                                break;
+                            case 10:
+                                disconnectedEvent?.Invoke();
+                                break;
+                            case 15:
+                                versionReceivedEvent?.Invoke();
+                                break;
+                        }
                     }
+                }
+                catch (IOException ex)
+                {
+                    // Handle the disconnection, log it or try to reconnect
+                    Debug.WriteLine($"Disconnected: {ex.Message}");
+                    disconnectedEvent?.Invoke();
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    Debug.WriteLine($"An error occurred: {ex.Message}");
                 }
             });
         }
