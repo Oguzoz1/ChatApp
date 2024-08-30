@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <!-- Upper Border with Cancel Button -->
-            <Border Grid.Row="0" Background="#15154C" Height="40" VerticalAlignment="Top">
+            <Border Grid.Row="0" Background="#15154C" Height="40" VerticalAlignment="Top" MouseDown="Border_MouseDown">
                 <Grid>
                     <TextBlock Text="NoBaseChat"
                        VerticalAlignment="Center"
