@@ -1,4 +1,5 @@
 {
+  "AppName":  "FluxTalk",
   "Version": "1.0.0",
   "ServerIP": "",
   "exclude": [
