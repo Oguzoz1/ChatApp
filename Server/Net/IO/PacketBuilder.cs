@@ -20,10 +20,15 @@ namespace Server.Net.IO
         }
         public void WriteMessage(string msg)
         {
+            //Including Unicode Characters
+            byte[] msgBytes = Encoding.UTF8.GetBytes(msg);
+
             //opcode length how many bytes needed to read for package. *Payload*
-            int msgLength = msg.Length;
+            int msgLength = msgBytes.Length;
+            //Length of the message
             _ms.Write(BitConverter.GetBytes(msgLength));
-            _ms.Write(Encoding.ASCII.GetBytes(msg));
+            //Actual message
+            _ms.Write(msgBytes, 0, msgBytes.Length);
 
             //1 byte for opcode. 4 byte for the length of the message. 
             //We allocate 4 byte since we may need to fit bigger messages.

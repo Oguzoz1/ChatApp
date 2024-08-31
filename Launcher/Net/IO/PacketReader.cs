@@ -20,7 +20,7 @@ namespace LauncherClient.Net.IO
             msgBuffer = new byte[length];
             _ns.Read(msgBuffer, 0, length);
 
-            string msg = Encoding.ASCII.GetString(msgBuffer);
+            string msg = Encoding.UTF8.GetString(msgBuffer);
 
             return msg;
         }
