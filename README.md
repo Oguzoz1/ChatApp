@@ -1,7 +1,3 @@
-# UNDER CONSTRUCTION 
-
-
-
 <!-- PROJECT LOGO -->
 <h2 align="center">FLUXTALK</h2>
   <p align="center">
@@ -113,6 +109,7 @@ The project includes necessary dependencies like Newtonsoft.Json via NuGet packa
 Oğuz Özüer
 
 Project Link: https://github.com/Oguzoz1/FluxTalk
+
 Linked-in: https://www.linkedin.com/in/mehmetoguzozuer/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
