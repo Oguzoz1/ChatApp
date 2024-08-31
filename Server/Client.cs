@@ -1,4 +1,5 @@
 ﻿using Server.Net.IO;
+using Server.Services;
 using System;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace Server
                         case 15:
                             string vrs = _packetReader.ReadMessage();
                             Console.WriteLine($"[{DateTime.Now}]: Version requested by {Username}: {vrs}");
-                            Program.OnVersionRequest(this);
+                            VersionManager.OnVersionRequest(this);
                             break;
                         default:
                             break;

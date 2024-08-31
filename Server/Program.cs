@@ -10,7 +10,6 @@ namespace Server
     class Program
     {
         private static TcpListener _listener;
-        private static string _currentVersion = "1.0.0"; 
 
         static void Main(string[] args)
         {
@@ -38,17 +37,6 @@ namespace Server
             }
         }
 
-        public static void OnVersionRequest(Client client)
-        {
-            SendVersionToClient(client, _currentVersion);
-        }
 
-        static void SendVersionToClient(Client client, string version)
-        {
-            PacketBuilder versionPacket = new PacketBuilder();
-            versionPacket.WriteOpCode(15); 
-            versionPacket.WriteMessage(version);
-            client.ClientSocket.Client.Send(versionPacket.GetPacketBytes());
-        }
     }
 }

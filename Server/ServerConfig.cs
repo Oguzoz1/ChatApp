@@ -1,16 +1,19 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LauncherClient
+namespace Server
 {
-    public static class AppConfig
+    public static class ServerConfig
     {
         public static string Version { get; private set; }
         public static string ServerIP { get; private set; }
 
-        static AppConfig()
+        static ServerConfig()
         {
             try
             {
@@ -18,19 +21,19 @@ namespace LauncherClient
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error loading configuration: {ex.Message}");
+                Console.WriteLine($"Error loading configuration: {ex.Message}");
                 throw;
             }
         }
 
-        public static void LoadConfig()
+        private static void LoadConfig()
         {
             // Adjust path if necessary
-            var configFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.Development.json");
+            var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "serversettings.Development.json");
 
-            if (File.Exists(configFilePath))
+            if (File.Exists(configPath))
             {
-                var json = File.ReadAllText(configFilePath);
+                var json = File.ReadAllText(configPath);
                 dynamic config = JsonConvert.DeserializeObject(json);
 
                 Version = config.Version;
@@ -39,7 +42,7 @@ namespace LauncherClient
             else
             {
                 // Handle the case where the file does not exist
-                throw new FileNotFoundException($"Configuration file '{configFilePath}' not found.");
+                throw new FileNotFoundException($"Configuration file '{configPath}' not found.");
             }
         }
     }
