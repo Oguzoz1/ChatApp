@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:LauncherClient"
         xmlns:viewmodel="clr-namespace:LauncherClient.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1000"
@@ -30,7 +31,7 @@
             <!-- Upper Border with Cancel Button -->
             <Border Grid.Row="0" Background="#15154C" Height="40" VerticalAlignment="Top" MouseDown="Border_MouseDown">
                 <Grid>
-                    <TextBlock Text="NoBaseChat"
+                    <TextBlock Text="{Binding Source={x:Static local:AppConfig.AppName}}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center" 
                        Margin="10,0,0,0"

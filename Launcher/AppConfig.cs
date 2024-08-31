@@ -7,6 +7,7 @@ namespace LauncherClient
 {
     public static class AppConfig
     {
+        public static string AppName { get; private set; }
         public static string Version { get; private set; }
         public static string ServerIP { get; private set; }
 
@@ -35,6 +36,7 @@ namespace LauncherClient
 
                 Version = config.Version;
                 ServerIP = config.ServerIP;
+                AppName = config.AppName;
             }
             else
             {

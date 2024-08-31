@@ -10,6 +10,7 @@ namespace Server
 {
     public static class ServerConfig
     {
+        public static string AppName { get; private set; }
         public static string Version { get; private set; }
         public static string ServerIP { get; private set; }
 
@@ -38,6 +39,7 @@ namespace Server
 
                 Version = config.Version;
                 ServerIP = config.ServerIP;
+                AppName = config.AppName;
             }
             else
             {
