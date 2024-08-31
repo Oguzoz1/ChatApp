@@ -3,16 +3,9 @@
 
 
 <!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="">
-    <img src="" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">UNNAMED CHAT APPLICATION</h3>
-
+<h2 align="center">FLUXTALK</h2>
   <p align="center">
-    Chatting application is being built with WPF. It is deployed on GCS and usable anytime. 
+    Windows Application dedicated to holding no message data while chatting!
   </p>
 </div>
 
@@ -48,46 +41,54 @@
 ## About The Project
 Welcome to the Chat Application project! This application is designed to provide a simple, 
 secure, and efficient way to communicate with others without holding any message logs. The primary focus is
-on real-time messaging, with features that prioritize user privacy and seamless updates.
+on real-time messaging, with features that prioritize user privacy and seamless updates. The application
+is under development actively.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Built With
-.NET WPF
-Current Server: Linux -> Google Cloud Service Virtual Machine
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-
 ### Prerequisites
 
-Windows OS
-
+Before you begin, ensure you have the following installed on your system:
+- Visual Studio 2019 or later with the following workloads:
+     - .NET Desktop Development
+- .NET Core SDK or .NET Framework
+- Git
 ### Installation
 
-
 1. Clone the repo
+Open your terminal and navigate to the directory where you want to clone the project.
+- Then paste the following command:
    ```sh
-   https://github.com/Oguzoz1/ChatApp
+   git clone https://github.com/Oguzoz1/ChatApp
    ```
 2. Restore NuGet Packages
-   ```sh
-   dotnet restore
-   ```
-   ```sh
-   nuget restore
-   ```
+   
+The project includes necessary dependencies like Newtonsoft.Json via NuGet packages. Visual Studio typically restores these packages automatically when you open the solution. If it doesn't, follow these steps:
+  1. Restore Packages Automatically
+      - Upon openning the solution, Visual Studio should prompt you to restore missing NuGet packages. Click 'Restore' if prompted.
+    
+        
+  2. Restore Packages Manually:
+      - Using Solution Explorer:
+          - Right-Click on the Solution in the 'Solution Explorer'.
+          - Select 'Restore NuGet Packages'.
+      - Using Package Manager Console:
+          - Go TO 'Tools' > 'NuGet Package Manager' > 'Package Manager Console'.
+          - In the console, run:        
+               ```sh
+               Update-Package -reinstall
+               ```
+          - Using .NET CLI:
+            - Open Terminal and Run:    
+             ```sh
+             nuget restore
+             ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
-## Roadmap
+## Milestones
 
 - [ ] Add Client Auto-Update System
 - [ ] Add User Authentication
@@ -112,6 +113,7 @@ Windows OS
 Oğuz Özüer
 
 Project Link: https://github.com/Oguzoz1/FluxTalk
+Linked-in: https://www.linkedin.com/in/mehmetoguzozuer/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
