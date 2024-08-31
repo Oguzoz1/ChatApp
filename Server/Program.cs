@@ -1,4 +1,5 @@
 ﻿using Server.Net.IO;
+using Server.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,9 @@ namespace Server
 
                     // Broadcast the connection to everyone on the server
                     BroadcastManager.BroadcastConnection();
+
+                    //Health Check
+                    HealthCheck.HandleHealthCheck(tcpClient);
                 }
                 catch (Exception ex)
                 {
