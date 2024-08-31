@@ -111,7 +111,7 @@ Windows OS
 
 Oğuz Özüer
 
-Project Link: https://github.com/Oguzoz1/NoBaseChat
+Project Link: https://github.com/Oguzoz1/FluxTalk
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
