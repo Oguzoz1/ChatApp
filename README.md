@@ -40,6 +40,7 @@ secure, and efficient way to communicate with others without holding any message
 on real-time messaging, with features that prioritize user privacy and seamless updates. The application
 is under development actively.
 
+
 Server Status: ![Server Status](http://34.141.136.120:5000/status)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
