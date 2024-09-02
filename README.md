@@ -89,12 +89,12 @@ The project includes necessary dependencies like Newtonsoft.Json via NuGet packa
 <!-- ROADMAP -->
 ## Milestones
 
+- [ ] Add Security Measures
 - [ ] Add Client Auto-Update System
 - [ ] Add User Authentication
 - [ ] Add Private Messaging Feature
 - [ ] Add Image Support for Chatting
 - [ ] Add User Profile Picture
-- [ ] Add Encryption to messages
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
