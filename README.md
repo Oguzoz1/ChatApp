@@ -1,10 +1,11 @@
 <!-- PROJECT LOGO -->
 <h2 align="center">FLUXTALK</h2>
-  <p align="center">
-    Windows Application dedicated to holding no message data while chatting!
-    [CHECK WIKI FOR DETAILS](https://github.com/Oguzoz1/FluxTalk/wiki)
-  </p>
-</div>
+<p align="center">
+  Windows Application dedicated to holding no message data while chatting!
+</p>
+<p align="center">
+  <a href="https://github.com/Oguzoz1/FluxTalk/wiki" target="_blank">GET TO WIKI FOR MORE INFO</a>
+</p>
 
 
 
